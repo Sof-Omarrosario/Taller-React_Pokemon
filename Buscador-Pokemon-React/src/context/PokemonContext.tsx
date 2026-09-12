@@ -38,11 +38,15 @@ export const PokemonProvider : React.FC<{ children : React.ReactNode}> = ({ chil
 
     useEffect(() =>{
         const data = localStorage.getItem('lista_entrenadores');
+        
+
         if(data){
             const lista : Usuario[] = JSON.parse(data);
             setEntrenadores(lista);
+
             
             const  idActivo = localStorage.getItem('entrenador_Activo_id');
+
 
             if(idActivo){
                 const encontrado = lista.find(u => u.id.toString() === idActivo);
@@ -59,10 +63,19 @@ export const PokemonProvider : React.FC<{ children : React.ReactNode}> = ({ chil
 
     const seleccionarEntrenador = (usuario : Usuario) => {
         setEntrenadorActivo(usuario);
-
         localStorage.setItem('entrenador_Activo_id', usuario.id.toString());
         cargarrMochilaEntrenador(usuario.id);
     }
+
+    const registrarEntrenador = (nuevoUsuario: Usuario) => {
+        const actualizados = [...entrenadores, nuevoUsuario];
+        setEntrenadores(actualizados);
+        localStorage.setItem('lista_entrenadores', JSON.stringify(actualizados));
+        seleccionarEntrenador(nuevoUsuario);
+    }
+
+    const
+
 
     
 }
