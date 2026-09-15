@@ -27,7 +27,8 @@ function app(){
        
       </BrowserRouter>
     </PokemonProvider>
-  )
+  );
 
 
 }
+ export default App;
